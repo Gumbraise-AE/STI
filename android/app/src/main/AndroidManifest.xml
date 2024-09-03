@@ -45,7 +45,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="sti" android:host="sti.com" />
+                <data android:scheme="sti" android:host="gumbraise.com" />
             </intent-filter>
 
         </activity>

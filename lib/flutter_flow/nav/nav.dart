@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+
 import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
@@ -72,13 +73,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const AuthPageWidget() : const HomePageWidget(),
+          appStateNotifier.loggedIn ? const HomePageWidget() : const AuthPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const AuthPageWidget() : const HomePageWidget(),
+              appStateNotifier.loggedIn ? const HomePageWidget() : const AuthPageWidget(),
         ),
         FFRoute(
           name: 'HomePage',
@@ -257,7 +258,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/homePage';
+            return '/authPage';
           }
           return null;
         },

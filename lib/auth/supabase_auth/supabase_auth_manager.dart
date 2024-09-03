@@ -5,12 +5,13 @@ import '/auth/auth_manager.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'email_auth.dart';
-
+import 'google_auth.dart';
 import 'supabase_user_provider.dart';
 
 export '/auth/base_auth_user_provider.dart';
 
-class SupabaseAuthManager extends AuthManager with EmailSignInManager {
+class SupabaseAuthManager extends AuthManager
+    with EmailSignInManager, GoogleSignInManager {
   @override
   Future signOut() {
     return SupaFlow.client.auth.signOut();
@@ -95,6 +96,10 @@ class SupabaseAuthManager extends AuthManager with EmailSignInManager {
         context,
         () => emailCreateAccountFunc(email, password),
       );
+
+  @override
+  Future<BaseAuthUser?> signInWithGoogle(BuildContext context) =>
+      _signInOrCreateAccount(context, googleSignInFunc);
 
   /// Tries to sign in or create an account using Firebase Auth.
   /// Returns the User object if sign in was successful.

@@ -56,28 +56,52 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 child: Builder(
                   builder: (context) {
                     if (currentUserUid != '') {
-                      return const Row(
+                      return Row(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.end,
-                        children: [],
+                        children: [
+                          Flexible(
+                            child: FlutterFlowIconButton(
+                              borderColor: Colors.transparent,
+                              borderRadius: 20.0,
+                              borderWidth: 1.0,
+                              buttonSize: 40.0,
+                              icon: Icon(
+                                Icons.person_off_rounded,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24.0,
+                              ),
+                              onPressed: () async {
+                                GoRouter.of(context).prepareAuthEvent();
+                                await authManager.signOut();
+                                GoRouter.of(context).clearRedirectLocation();
+
+                                context.goNamedAuth(
+                                    'AuthPage', context.mounted);
+                              },
+                            ),
+                          ),
+                        ],
                       );
                     } else {
                       return Row(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          FlutterFlowIconButton(
-                            borderRadius: 20.0,
-                            borderWidth: 1.0,
-                            buttonSize: 40.0,
-                            icon: Icon(
-                              Icons.person_add,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24.0,
+                          Flexible(
+                            child: FlutterFlowIconButton(
+                              borderRadius: 20.0,
+                              borderWidth: 1.0,
+                              buttonSize: 40.0,
+                              icon: Icon(
+                                Icons.person_add,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24.0,
+                              ),
+                              onPressed: () async {
+                                context.pushNamed('AuthPage');
+                              },
                             ),
-                            onPressed: () async {
-                              context.pushNamed('AuthPage');
-                            },
                           ),
                         ],
                       );
