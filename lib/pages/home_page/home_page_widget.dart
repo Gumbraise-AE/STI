@@ -8,6 +8,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'home_page_model.dart';
@@ -112,62 +113,63 @@ class _HomePageWidgetState extends State<HomePageWidget>
                       letterSpacing: 0.0,
                     ),
               ),
-              Flexible(
-                child: Builder(
-                  builder: (context) {
-                    if (currentUserUid != '') {
-                      return Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Flexible(
-                            child: FlutterFlowIconButton(
-                              borderColor: Colors.transparent,
-                              borderRadius: 20,
-                              borderWidth: 1,
-                              buttonSize: 40,
-                              icon: Icon(
-                                Icons.person_off_rounded,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 24,
-                              ),
-                              onPressed: () async {
-                                GoRouter.of(context).prepareAuthEvent();
-                                await authManager.signOut();
-                                GoRouter.of(context).clearRedirectLocation();
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  FlutterFlowIconButton(
+                    borderColor: Colors.transparent,
+                    borderRadius: 30,
+                    borderWidth: 1,
+                    buttonSize: 60,
+                    icon: FaIcon(
+                      FontAwesomeIcons.trophy,
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      size: 24,
+                    ),
+                    onPressed: () async {
+                      context.pushNamed('Scoreboard');
+                    },
+                  ),
+                  Builder(
+                    builder: (context) {
+                      if (currentUserUid != '') {
+                        return FlutterFlowIconButton(
+                          borderColor: Colors.transparent,
+                          borderRadius: 9999,
+                          borderWidth: 1,
+                          buttonSize: 60,
+                          icon: Icon(
+                            Icons.person_off_rounded,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 30,
+                          ),
+                          onPressed: () async {
+                            GoRouter.of(context).prepareAuthEvent();
+                            await authManager.signOut();
+                            GoRouter.of(context).clearRedirectLocation();
 
-                                context.goNamedAuth(
-                                    'HomePage', context.mounted);
-                              },
-                            ),
+                            context.goNamedAuth('HomePage', context.mounted);
+                          },
+                        );
+                      } else {
+                        return FlutterFlowIconButton(
+                          borderRadius: 9999,
+                          borderWidth: 1,
+                          buttonSize: 60,
+                          icon: Icon(
+                            Icons.person_add,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 30,
                           ),
-                        ],
-                      );
-                    } else {
-                      return Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Flexible(
-                            child: FlutterFlowIconButton(
-                              borderRadius: 20,
-                              borderWidth: 1,
-                              buttonSize: 40,
-                              icon: Icon(
-                                Icons.person_add,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 24,
-                              ),
-                              onPressed: () async {
-                                context.pushNamed('AuthPage');
-                              },
-                            ),
-                          ),
-                        ],
-                      );
-                    }
-                  },
-                ),
+                          onPressed: () async {
+                            context.pushNamed('AuthPage');
+                          },
+                        );
+                      }
+                    },
+                  ),
+                ],
               ),
             ],
           ),

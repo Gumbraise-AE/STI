@@ -1,4 +1,5 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -39,168 +40,210 @@ class _AuthPageWidgetState extends State<AuthPageWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        body: Align(
-          alignment: const AlignmentDirectional(0, 0),
-          child: Container(
-            width: double.infinity,
-            constraints: const BoxConstraints(
-              maxWidth: 670,
-            ),
-            decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: Image.network(
-                          'https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y29va2luZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
-                        ).image,
-                      ),
-                    ),
-                    child: Container(
-                      width: 100,
-                      height: 100,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            const Color(0x00FFFFFF),
-                            FlutterFlowTheme.of(context).secondaryBackground
-                          ],
-                          stops: const [0, 1],
-                          begin: const AlignmentDirectional(0, -1),
-                          end: const AlignmentDirectional(0, 1),
-                        ),
-                      ),
-                      alignment: const AlignmentDirectional(0, 1),
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(24, 64, 24, 24),
-                        child: Text(
-                          'Join the STI adventure by signing in!',
-                          textAlign: TextAlign.center,
-                          style: FlutterFlowTheme.of(context)
-                              .displayMedium
-                              .override(
-                                fontFamily: 'Sora',
-                                letterSpacing: 0.0,
-                              ),
-                        ),
-                      ),
-                    ),
-                  ),
+        body: Stack(
+          children: [
+            Align(
+              alignment: const AlignmentDirectional(0, 0),
+              child: Container(
+                width: double.infinity,
+                constraints: const BoxConstraints(
+                  maxWidth: 670,
                 ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 44, 0, 96),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 16),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            GoRouter.of(context).prepareAuthEvent();
-                            final user =
-                                await authManager.signInWithGoogle(context);
-                            if (user == null) {
-                              return;
-                            }
-
-                            context.goNamedAuth('AuthPage', context.mounted);
-                          },
-                          text: 'Sign up with Google',
-                          icon: FaIcon(
-                            FontAwesomeIcons.google,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 24,
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: Image.network(
+                              'https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y29va2luZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
+                            ).image,
                           ),
-                          options: FFButtonOptions(
-                            width: double.infinity,
-                            height: 60,
-                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                            iconPadding:
-                                const EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            textStyle:
-                                FlutterFlowTheme.of(context).bodyLarge.override(
+                        ),
+                        child: Container(
+                          width: 100,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                const Color(0x00FFFFFF),
+                                FlutterFlowTheme.of(context).secondaryBackground
+                              ],
+                              stops: const [0, 1],
+                              begin: const AlignmentDirectional(0, -1),
+                              end: const AlignmentDirectional(0, 1),
+                            ),
+                          ),
+                          alignment: const AlignmentDirectional(0, 1),
+                          child: Padding(
+                            padding:
+                                const EdgeInsetsDirectional.fromSTEB(24, 64, 24, 24),
+                            child: Text(
+                              'Join the STI adventure by signing in!',
+                              textAlign: TextAlign.center,
+                              style: FlutterFlowTheme.of(context)
+                                  .displayMedium
+                                  .override(
+                                    fontFamily: 'Sora',
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 44, 0, 96),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 16),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                GoRouter.of(context).prepareAuthEvent();
+                                final user =
+                                    await authManager.signInWithGoogle(context);
+                                if (user == null) {
+                                  return;
+                                }
+
+                                context.goNamedAuth(
+                                    'AuthPage', context.mounted);
+                              },
+                              text: 'Sign up with Google',
+                              icon: FaIcon(
+                                FontAwesomeIcons.google,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24,
+                              ),
+                              options: FFButtonOptions(
+                                width: double.infinity,
+                                height: 60,
+                                padding:
+                                    const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                iconPadding:
+                                    const EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
                                       fontFamily: 'Inter',
                                       letterSpacing: 0.0,
                                     ),
-                            elevation: 0,
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).alternate,
-                              width: 2,
+                                elevation: 0,
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(50),
+                                hoverColor:
+                                    FlutterFlowTheme.of(context).alternate,
+                              ),
                             ),
-                            borderRadius: BorderRadius.circular(50),
-                            hoverColor: FlutterFlowTheme.of(context).alternate,
                           ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
-                        child: Text(
-                          'You already have an account? Sign in below',
-                          style:
-                              FlutterFlowTheme.of(context).labelMedium.override(
+                          Padding(
+                            padding:
+                                const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
+                            child: Text(
+                              'You already have an account? Sign in below',
+                              style: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
                                     fontFamily: 'Inter',
                                     letterSpacing: 0.0,
                                   ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 16),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            GoRouter.of(context).prepareAuthEvent();
-                            final user =
-                                await authManager.signInWithGoogle(context);
-                            if (user == null) {
-                              return;
-                            }
-
-                            context.goNamedAuth('AuthPage', context.mounted);
-                          },
-                          text: 'Sign in with Google',
-                          icon: FaIcon(
-                            FontAwesomeIcons.google,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 24,
+                            ),
                           ),
-                          options: FFButtonOptions(
-                            width: double.infinity,
-                            height: 60,
-                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                            iconPadding:
-                                const EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                            color: FlutterFlowTheme.of(context).alternate,
-                            textStyle:
-                                FlutterFlowTheme.of(context).bodyLarge.override(
+                          Padding(
+                            padding:
+                                const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 16),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                GoRouter.of(context).prepareAuthEvent();
+                                final user =
+                                    await authManager.signInWithGoogle(context);
+                                if (user == null) {
+                                  return;
+                                }
+
+                                context.goNamedAuth(
+                                    'AuthPage', context.mounted);
+                              },
+                              text: 'Sign in with Google',
+                              icon: FaIcon(
+                                FontAwesomeIcons.google,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24,
+                              ),
+                              options: FFButtonOptions(
+                                width: double.infinity,
+                                height: 60,
+                                padding:
+                                    const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                iconPadding:
+                                    const EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                                color: FlutterFlowTheme.of(context).alternate,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
                                       fontFamily: 'Inter',
                                       letterSpacing: 0.0,
                                     ),
-                            elevation: 0,
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).alternate,
-                              width: 2,
+                                elevation: 0,
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(50),
+                                hoverColor:
+                                    FlutterFlowTheme.of(context).alternate,
+                              ),
                             ),
-                            borderRadius: BorderRadius.circular(50),
-                            hoverColor: FlutterFlowTheme.of(context).alternate,
                           ),
-                        ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
+            Align(
+              alignment: const AlignmentDirectional(1, -1),
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 36, 18, 0),
+                child: FlutterFlowIconButton(
+                  borderColor: Colors.transparent,
+                  borderRadius: 9999,
+                  borderWidth: 1,
+                  buttonSize: 60,
+                  icon: const Icon(
+                    Icons.close_rounded,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                  onPressed: () async {
+                    GoRouter.of(context).prepareAuthEvent();
+                    await authManager.signOut();
+                    GoRouter.of(context).clearRedirectLocation();
+
+                    context.goNamedAuth('HomePage', context.mounted);
+                  },
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
