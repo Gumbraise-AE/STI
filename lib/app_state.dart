@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import '/backend/schema/structs/index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'flutter_flow/flutter_flow_util.dart';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -17,7 +19,14 @@ class FFAppState extends ChangeNotifier {
   Future initializePersistedState() async {
     prefs = await SharedPreferences.getInstance();
     _safeInit(() {
-      _soundName = prefs.getString('ff_soundName') ?? _soundName;
+      if (prefs.containsKey('ff_sound')) {
+        try {
+          final serializedData = prefs.getString('ff_sound') ?? '{}';
+          _sound = SoundsStruct.fromSerializableMap(jsonDecode(serializedData));
+        } catch (e) {
+          print("Can't decode persisted data type. Error: $e.");
+        }
+      }
     });
   }
 
@@ -28,11 +37,16 @@ class FFAppState extends ChangeNotifier {
 
   late SharedPreferences prefs;
 
-  String _soundName = '';
-  String get soundName => _soundName;
-  set soundName(String value) {
-    _soundName = value;
-    prefs.setString('ff_soundName', value);
+  SoundsStruct _sound = SoundsStruct();
+  SoundsStruct get sound => _sound;
+  set sound(SoundsStruct value) {
+    _sound = value;
+    prefs.setString('ff_sound', value.serialize());
+  }
+
+  void updateSoundStruct(Function(SoundsStruct) updateFn) {
+    updateFn(_sound);
+    prefs.setString('ff_sound', _sound.serialize());
   }
 }
 

@@ -186,104 +186,104 @@ class ThemeTypography extends Typography {
         'Sora',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
-        fontSize: 56.0,
+        fontSize: 56,
       );
   String get displayMediumFamily => 'Sora';
   TextStyle get displayMedium => GoogleFonts.getFont(
         'Sora',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
-        fontSize: 44.0,
+        fontSize: 44,
       );
   String get displaySmallFamily => 'Sora';
   TextStyle get displaySmall => GoogleFonts.getFont(
         'Sora',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
-        fontSize: 36.0,
+        fontSize: 36,
       );
   String get headlineLargeFamily => 'Sora';
   TextStyle get headlineLarge => GoogleFonts.getFont(
         'Sora',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 32.0,
+        fontSize: 32,
       );
   String get headlineMediumFamily => 'Sora';
   TextStyle get headlineMedium => GoogleFonts.getFont(
         'Sora',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
-        fontSize: 32.0,
+        fontSize: 32,
       );
   String get headlineSmallFamily => 'Sora';
   TextStyle get headlineSmall => GoogleFonts.getFont(
         'Sora',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
-        fontSize: 24.0,
+        fontSize: 24,
       );
   String get titleLargeFamily => 'Sora';
   TextStyle get titleLarge => GoogleFonts.getFont(
         'Sora',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
-        fontSize: 22.0,
+        fontSize: 22,
       );
   String get titleMediumFamily => 'Inter';
   TextStyle get titleMedium => GoogleFonts.getFont(
         'Inter',
         color: theme.info,
         fontWeight: FontWeight.w600,
-        fontSize: 18.0,
+        fontSize: 18,
       );
   String get titleSmallFamily => 'Inter';
   TextStyle get titleSmall => GoogleFonts.getFont(
         'Inter',
         color: theme.info,
         fontWeight: FontWeight.w500,
-        fontSize: 16.0,
+        fontSize: 16,
       );
   String get labelLargeFamily => 'Inter';
   TextStyle get labelLarge => GoogleFonts.getFont(
         'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.w500,
-        fontSize: 16.0,
+        fontSize: 16,
       );
   String get labelMediumFamily => 'Inter';
   TextStyle get labelMedium => GoogleFonts.getFont(
         'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.w500,
-        fontSize: 14.0,
+        fontSize: 14,
       );
   String get labelSmallFamily => 'Inter';
   TextStyle get labelSmall => GoogleFonts.getFont(
         'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.w500,
-        fontSize: 12.0,
+        fontSize: 12,
       );
   String get bodyLargeFamily => 'Inter';
   TextStyle get bodyLarge => GoogleFonts.getFont(
         'Inter',
         color: theme.primaryText,
-        fontSize: 16.0,
+        fontSize: 16,
       );
   String get bodyMediumFamily => 'Inter';
   TextStyle get bodyMedium => GoogleFonts.getFont(
         'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
-        fontSize: 14.0,
+        fontSize: 14,
       );
   String get bodySmallFamily => 'Inter';
   TextStyle get bodySmall => GoogleFonts.getFont(
         'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
-        fontSize: 12.0,
+        fontSize: 12,
       );
 }
 

@@ -40,11 +40,11 @@ class _AuthPageWidgetState extends State<AuthPageWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         body: Align(
-          alignment: const AlignmentDirectional(0.0, 0.0),
+          alignment: const AlignmentDirectional(0, 0),
           child: Container(
             width: double.infinity,
             constraints: const BoxConstraints(
-              maxWidth: 670.0,
+              maxWidth: 670,
             ),
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -65,23 +65,22 @@ class _AuthPageWidgetState extends State<AuthPageWidget> {
                       ),
                     ),
                     child: Container(
-                      width: 100.0,
-                      height: 100.0,
+                      width: 100,
+                      height: 100,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: [
                             const Color(0x00FFFFFF),
                             FlutterFlowTheme.of(context).secondaryBackground
                           ],
-                          stops: const [0.0, 1.0],
-                          begin: const AlignmentDirectional(0.0, -1.0),
-                          end: const AlignmentDirectional(0, 1.0),
+                          stops: const [0, 1],
+                          begin: const AlignmentDirectional(0, -1),
+                          end: const AlignmentDirectional(0, 1),
                         ),
                       ),
-                      alignment: const AlignmentDirectional(0.0, 1.0),
+                      alignment: const AlignmentDirectional(0, 1),
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            24.0, 64.0, 24.0, 24.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(24, 64, 24, 24),
                         child: Text(
                           'Join the STI adventure by signing in!',
                           textAlign: TextAlign.center,
@@ -97,14 +96,13 @@ class _AuthPageWidgetState extends State<AuthPageWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 44.0, 0.0, 96.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 44, 0, 96),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 12.0, 16.0, 16.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 16),
                         child: FFButtonWidget(
                           onPressed: () async {
                             GoRouter.of(context).prepareAuthEvent();
@@ -114,21 +112,20 @@ class _AuthPageWidgetState extends State<AuthPageWidget> {
                               return;
                             }
 
-                            context.goNamedAuth('HomePage', context.mounted);
+                            context.goNamedAuth('AuthPage', context.mounted);
                           },
                           text: 'Sign up with Google',
                           icon: FaIcon(
                             FontAwesomeIcons.google,
                             color: FlutterFlowTheme.of(context).primaryText,
-                            size: 24.0,
+                            size: 24,
                           ),
                           options: FFButtonOptions(
                             width: double.infinity,
-                            height: 60.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 12.0, 0.0),
+                            height: 60,
+                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                            iconPadding:
+                                const EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
                             textStyle:
@@ -136,19 +133,18 @@ class _AuthPageWidgetState extends State<AuthPageWidget> {
                                       fontFamily: 'Inter',
                                       letterSpacing: 0.0,
                                     ),
-                            elevation: 0.0,
+                            elevation: 0,
                             borderSide: BorderSide(
                               color: FlutterFlowTheme.of(context).alternate,
-                              width: 2.0,
+                              width: 2,
                             ),
-                            borderRadius: BorderRadius.circular(50.0),
+                            borderRadius: BorderRadius.circular(50),
                             hoverColor: FlutterFlowTheme.of(context).alternate,
                           ),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            0.0, 12.0, 0.0, 12.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
                         child: Text(
                           'You already have an account? Sign in below',
                           style:
@@ -159,8 +155,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 12.0, 16.0, 16.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 16),
                         child: FFButtonWidget(
                           onPressed: () async {
                             GoRouter.of(context).prepareAuthEvent();
@@ -170,33 +165,32 @@ class _AuthPageWidgetState extends State<AuthPageWidget> {
                               return;
                             }
 
-                            context.goNamedAuth('HomePage', context.mounted);
+                            context.goNamedAuth('AuthPage', context.mounted);
                           },
                           text: 'Sign in with Google',
                           icon: FaIcon(
                             FontAwesomeIcons.google,
                             color: FlutterFlowTheme.of(context).primaryText,
-                            size: 24.0,
+                            size: 24,
                           ),
                           options: FFButtonOptions(
                             width: double.infinity,
-                            height: 60.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 12.0, 0.0),
+                            height: 60,
+                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                            iconPadding:
+                                const EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
                             color: FlutterFlowTheme.of(context).alternate,
                             textStyle:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
                                       fontFamily: 'Inter',
                                       letterSpacing: 0.0,
                                     ),
-                            elevation: 0.0,
+                            elevation: 0,
                             borderSide: BorderSide(
                               color: FlutterFlowTheme.of(context).alternate,
-                              width: 2.0,
+                              width: 2,
                             ),
-                            borderRadius: BorderRadius.circular(50.0),
+                            borderRadius: BorderRadius.circular(50),
                             hoverColor: FlutterFlowTheme.of(context).alternate,
                           ),
                         ),

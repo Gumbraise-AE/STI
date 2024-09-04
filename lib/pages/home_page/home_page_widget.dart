@@ -35,12 +35,17 @@ class _HomePageWidgetState extends State<HomePageWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (FFAppState().soundName == '') {
+      if (!FFAppState().sound.hasId()) {
         _model.defaultSound = await SoundsTable().queryRows(
           queryFn: (q) => q.order('created_at', ascending: true),
         );
-        FFAppState().soundName = _model.defaultSound!.first.name;
-        setState(() {});
+        FFAppState().updateSoundStruct(
+          (e) => e
+            ..id = _model.defaultSound?.first.id
+            ..createdAt = _model.defaultSound?.first.createdAt
+            ..name = _model.defaultSound?.first.name,
+        );
+        safeSetState(() {});
         return;
       } else {
         return;
@@ -101,7 +106,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                FFAppState().soundName,
+                FFAppState().sound.name,
                 style: FlutterFlowTheme.of(context).titleLarge.override(
                       fontFamily: 'Sora',
                       letterSpacing: 0.0,
@@ -118,13 +123,13 @@ class _HomePageWidgetState extends State<HomePageWidget>
                           Flexible(
                             child: FlutterFlowIconButton(
                               borderColor: Colors.transparent,
-                              borderRadius: 20.0,
-                              borderWidth: 1.0,
-                              buttonSize: 40.0,
+                              borderRadius: 20,
+                              borderWidth: 1,
+                              buttonSize: 40,
                               icon: Icon(
                                 Icons.person_off_rounded,
                                 color: FlutterFlowTheme.of(context).primaryText,
-                                size: 24.0,
+                                size: 24,
                               ),
                               onPressed: () async {
                                 GoRouter.of(context).prepareAuthEvent();
@@ -132,7 +137,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 GoRouter.of(context).clearRedirectLocation();
 
                                 context.goNamedAuth(
-                                    'AuthPage', context.mounted);
+                                    'HomePage', context.mounted);
                               },
                             ),
                           ),
@@ -145,13 +150,13 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         children: [
                           Flexible(
                             child: FlutterFlowIconButton(
-                              borderRadius: 20.0,
-                              borderWidth: 1.0,
-                              buttonSize: 40.0,
+                              borderRadius: 20,
+                              borderWidth: 1,
+                              buttonSize: 40,
                               icon: Icon(
                                 Icons.person_add,
                                 color: FlutterFlowTheme.of(context).primaryText,
-                                size: 24.0,
+                                size: 24,
                               ),
                               onPressed: () async {
                                 context.pushNamed('AuthPage');
@@ -168,27 +173,30 @@ class _HomePageWidgetState extends State<HomePageWidget>
           ),
           actions: const [],
           centerTitle: false,
-          elevation: 0.0,
+          elevation: 0,
         ),
         body: SafeArea(
           top: true,
           child: Align(
-            alignment: const AlignmentDirectional(0.0, 0.0),
+            alignment: const AlignmentDirectional(0, 0),
             child: Column(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisSize: MainAxisSize.max,
               children: [
                 Flexible(
                   child: Stack(
-                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    alignment: const AlignmentDirectional(0, 0),
                     children: [
-                      Lottie.asset(
-                        'assets/lottie_animations/Animation_-_1725402420353.json',
-                        width: 500.0,
-                        height: 500.0,
-                        fit: BoxFit.contain,
-                        controller: lottieAnimationController,
-                        onLoaded: (composition) => lottieAnimationController
-                            .duration = composition.duration,
+                      Align(
+                        alignment: const AlignmentDirectional(0, 0),
+                        child: Lottie.asset(
+                          'assets/lottie_animations/Animation_-_1725402420353.json',
+                          width: 500,
+                          height: 500,
+                          fit: BoxFit.contain,
+                          controller: lottieAnimationController,
+                          onLoaded: (composition) => lottieAnimationController
+                              .duration = composition.duration,
+                        ),
                       ),
                       InkWell(
                         splashColor: Colors.transparent,
@@ -205,8 +213,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     .controller
                                     .forward(from: 0.0);
                               }
-                            }),
-                            Future(() async {
                               unawaited(
                                 () async {
                                   await lottieAnimationController.forward();
@@ -214,14 +220,44 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 }(),
                               );
                             }),
+                            Future(() async {
+                              if (currentUserUid != '') {
+                                if (_model.clickNumber == 1) {
+                                  unawaited(
+                                    () async {
+                                      await ClicksTable().insert({
+                                        'user_id': currentUserUid,
+                                        'sound_id': '',
+                                        'click_number': _model.clickNumber,
+                                      });
+                                    }(),
+                                  );
+                                } else {
+                                  unawaited(
+                                    () async {
+                                      await ClicksTable().update(
+                                        data: {
+                                          'user_id': currentUserUid,
+                                          'sound_id': '',
+                                          'click_number': _model.clickNumber,
+                                        },
+                                        matchingRows: (rows) => rows,
+                                      );
+                                    }(),
+                                  );
+                                }
+                              }
+                              _model.clickNumber = _model.clickNumber + 1;
+                              safeSetState(() {});
+                            }),
                           ]);
                         },
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(9999.0),
+                          borderRadius: BorderRadius.circular(9999),
                           child: Image.network(
                             'https://picsum.photos/seed/300/300',
-                            width: 250.0,
-                            height: 250.0,
+                            width: 250,
+                            height: 250,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -229,6 +265,23 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         animationsMap['imageOnActionTriggerAnimation']!,
                       ),
                     ],
+                  ),
+                ),
+                Align(
+                  alignment: const AlignmentDirectional(0, 1),
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 24),
+                    child: Text(
+                      valueOrDefault<String>(
+                        _model.clickNumber.toString(),
+                        '0',
+                      ),
+                      style:
+                          FlutterFlowTheme.of(context).headlineLarge.override(
+                                fontFamily: 'Sora',
+                                letterSpacing: 0.0,
+                              ),
+                    ),
                   ),
                 ),
               ],
