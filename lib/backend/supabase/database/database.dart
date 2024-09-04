@@ -6,4 +6,5 @@ export 'row.dart';
 export 'table.dart';
 
 export 'tables/sounds.dart';
+export 'tables/user_profiles.dart';
 export 'tables/clicks.dart';

@@ -10,9 +10,11 @@ class SoundsStruct extends BaseStruct {
     String? id,
     DateTime? createdAt,
     String? name,
+    String? soundUrl,
   })  : _id = id,
         _createdAt = createdAt,
-        _name = name;
+        _name = name,
+        _soundUrl = soundUrl;
 
   // "id" field.
   String? _id;
@@ -35,10 +37,18 @@ class SoundsStruct extends BaseStruct {
 
   bool hasName() => _name != null;
 
+  // "sound_url" field.
+  String? _soundUrl;
+  String get soundUrl => _soundUrl ?? '';
+  set soundUrl(String? val) => _soundUrl = val;
+
+  bool hasSoundUrl() => _soundUrl != null;
+
   static SoundsStruct fromMap(Map<String, dynamic> data) => SoundsStruct(
         id: data['id'] as String?,
         createdAt: data['created_at'] as DateTime?,
         name: data['name'] as String?,
+        soundUrl: data['sound_url'] as String?,
       );
 
   static SoundsStruct? maybeFromMap(dynamic data) =>
@@ -48,6 +58,7 @@ class SoundsStruct extends BaseStruct {
         'id': _id,
         'created_at': _createdAt,
         'name': _name,
+        'sound_url': _soundUrl,
       }.withoutNulls;
 
   @override
@@ -62,6 +73,10 @@ class SoundsStruct extends BaseStruct {
         ),
         'name': serializeParam(
           _name,
+          ParamType.String,
+        ),
+        'sound_url': serializeParam(
+          _soundUrl,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -83,6 +98,11 @@ class SoundsStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        soundUrl: deserializeParam(
+          data['sound_url'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -93,20 +113,24 @@ class SoundsStruct extends BaseStruct {
     return other is SoundsStruct &&
         id == other.id &&
         createdAt == other.createdAt &&
-        name == other.name;
+        name == other.name &&
+        soundUrl == other.soundUrl;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([id, createdAt, name]);
+  int get hashCode =>
+      const ListEquality().hash([id, createdAt, name, soundUrl]);
 }
 
 SoundsStruct createSoundsStruct({
   String? id,
   DateTime? createdAt,
   String? name,
+  String? soundUrl,
 }) =>
     SoundsStruct(
       id: id,
       createdAt: createdAt,
       name: name,
+      soundUrl: soundUrl,
     );

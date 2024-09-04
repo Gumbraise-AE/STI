@@ -218,6 +218,8 @@ dynamic deserializeParam<T>(
         switch (T) {
           case SoundsRow:
             return SoundsRow(data);
+          case UserProfilesRow:
+            return UserProfilesRow(data);
           case ClicksRow:
             return ClicksRow(data);
           default:

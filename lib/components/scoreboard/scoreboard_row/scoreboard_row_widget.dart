@@ -47,18 +47,53 @@ class _ScoreboardRowWidgetState extends State<ScoreboardRowWidget> {
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(
-          mainAxisSize: MainAxisSize.max,
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              valueOrDefault<String>(
-                widget.clickRow?.clickNumber.toString(),
-                'Timon',
-              ),
-              style: FlutterFlowTheme.of(context).bodyLarge.override(
-                    fontFamily: 'Inter',
-                    letterSpacing: 0.0,
+            FutureBuilder<List<UserProfilesRow>>(
+              future: _model.queryName(
+                requestFn: () => UserProfilesTable().querySingleRow(
+                  queryFn: (q) => q.eq(
+                    'user_id',
+                    widget.clickRow?.userId,
                   ),
+                ),
+              ),
+              builder: (context, snapshot) {
+                // Customize what your widget looks like when it's loading.
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          FlutterFlowTheme.of(context).primary,
+                        ),
+                      ),
+                    ),
+                  );
+                }
+                List<UserProfilesRow> textUserProfilesRowList = snapshot.data!;
+
+                final textUserProfilesRow = textUserProfilesRowList.isNotEmpty
+                    ? textUserProfilesRowList.first
+                    : null;
+
+                return Text(
+                  valueOrDefault<String>(
+                    textUserProfilesRow?.username != null &&
+                            textUserProfilesRow?.username != ''
+                        ? textUserProfilesRow?.username
+                        : textUserProfilesRow?.email,
+                    'Unknown',
+                  ),
+                  style: FlutterFlowTheme.of(context).bodyLarge.override(
+                        fontFamily: 'Inter',
+                        letterSpacing: 0.0,
+                      ),
+                );
+              },
             ),
             Text(
               '${valueOrDefault<String>(
@@ -70,7 +105,7 @@ class _ScoreboardRowWidgetState extends State<ScoreboardRowWidget> {
                     letterSpacing: 0.0,
                   ),
             ),
-          ],
+          ].divide(const SizedBox(width: 12)),
         ),
       ),
     );

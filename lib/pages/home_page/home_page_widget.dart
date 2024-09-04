@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'home_page_model.dart';
@@ -221,6 +222,14 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                   lottieAnimationController.reset();
                                 }(),
                               );
+                              _model.soundPlayer ??= AudioPlayer();
+                              if (_model.soundPlayer!.playing) {
+                                await _model.soundPlayer!.stop();
+                              }
+                              _model.soundPlayer!.setVolume(1);
+                              _model.soundPlayer!
+                                  .setUrl(FFAppState().sound.soundUrl)
+                                  .then((_) => _model.soundPlayer!.play());
                             }),
                             Future(() async {
                               if (currentUserUid != '') {

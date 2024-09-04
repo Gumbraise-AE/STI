@@ -22,4 +22,7 @@ class SoundsRow extends SupabaseDataRow {
 
   String get name => getField<String>('name')!;
   set name(String value) => setField<String>('name', value);
+
+  String get soundUrl => getField<String>('sound_url')!;
+  set soundUrl(String value) => setField<String>('sound_url', value);
 }
