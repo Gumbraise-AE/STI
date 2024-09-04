@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'auth_page_model.dart';
 export 'auth_page_model.dart';
@@ -24,6 +25,17 @@ class _AuthPageWidgetState extends State<AuthPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => AuthPageModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (currentUserUid != '') {
+        context.pushNamed('HomePage');
+
+        return;
+      } else {
+        return;
+      }
+    });
   }
 
   @override
